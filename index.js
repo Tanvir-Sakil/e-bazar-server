@@ -13,8 +13,8 @@ const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
-  const collection = client.db(`${process.env.PRODUCT_NAME}`).collection("products");
-  const orderCollection = client.db(`${process.env.PRODUCT_NAME}`).collection("orderProducts");
+  const collection = client.db("productDb").collection("products");
+  const orderCollection = client.db("productDb").collection("orderProducts");
 
   console.log('connect');
 
@@ -63,7 +63,7 @@ client.connect(err => {
   //delete product
   app.delete('/deleteProduct/:id', (req, res) => {
     const id = ObjectId(req.params.id)
-    console.log('detele this id', id);
+    console.log('delete this id', id);
     collection.findOneAndDelete({_id: id})
     .then(documents => res.send(!! documents.value))
   });
