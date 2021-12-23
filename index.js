@@ -6,7 +6,7 @@ require('dotenv').config()
 app.use(cors());
 app.use(bodyParser.json());
 const { ObjectId } = require('mongodb');
-const port = process.env.PORT || 4000
+app.set('port', (process.env.PORT || 4000));
 
 const MongoClient = require('mongodb').MongoClient;
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.sfmoe.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
@@ -84,7 +84,7 @@ client.connect(err => {
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
-
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+// Start node server
+app.listen(app.get('port'), function() {
+    console.log('Node server is running on port ' + app.get('port'));
+ });
