@@ -5,8 +5,8 @@ const bodyParser = require('body-parser');
 require('dotenv').config()
 app.use(cors());
 app.use(bodyParser.json());
-const { ObjectId } = require('mongodb');
-const port = process.env.PORT || 4000
+const ObjectID  = require('mongodb');
+const port = process.env.PORT 
 
 const MongoClient = require('mongodb').MongoClient;
 const uri =  `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.mxsrj.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
@@ -62,7 +62,7 @@ client.connect(err => {
 
   //delete product
   app.delete('/deleteProduct/:id', (req, res) => {
-    const id = ObjectId(req.params.id)
+    const id = ObjectID(req.params.id)
     console.log('delete this id', id);
     collection.findOneAndDelete({_id: id})
     .then(documents => res.send(!! documents.value))
