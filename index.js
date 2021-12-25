@@ -70,9 +70,13 @@ client.connect(err => {
 
   //find product for checkout
   app.get('/product/:id', (req, res) => {
-   
-      res.send("hello");
-    
+    console.log(ObjectId);
+    const id = ObjectId(req.params.id)
+     console.log('find this id', id);
+    // collection.find({_id: id})
+    // .toArray((error, documents) => {
+    //   res.send(documents);
+    // })
   });
 
 });
