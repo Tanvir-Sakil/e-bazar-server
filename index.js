@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config()
 app.use(cors());
 app.use(bodyParser.json());
-const {ObjectID} = require('mongodb').ObjectId
+const {ObjectId} = require('mongodb').ObjectId
 const port = process.env.PORT || 4000
 
 const MongoClient = require('mongodb').MongoClient;
@@ -62,7 +62,7 @@ client.connect(err => {
 
   //delete product
   app.delete('/deleteProduct/:id', (req, res) => {
-    const id = ObjectID(req.params.id)
+    const id = ObjectId(req.params.id)
     console.log('delete this id', id);
     collection.findOneAndDelete({_id: id})
     .then(documents => res.send(!! documents.value))
@@ -70,7 +70,7 @@ client.connect(err => {
 
   //find product for checkout
   app.get('/product/:id', (req, res) => {
-     const id = ObjectID(req.params.id)
+     const id = ObjectId(req.params.id)
      console.log('find this id', id);
     // collection.find({_id: id})
     // .toArray((error, documents) => {
