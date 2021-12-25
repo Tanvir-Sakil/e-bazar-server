@@ -70,7 +70,6 @@ client.connect(err => {
 
   //find product for checkout
   app.get('/product/:id', (req, res) => {
-    console.log(ObjectId);
     const id = ObjectId(req.params.id)
      console.log('find this id', id);
     // collection.find({_id: id})
