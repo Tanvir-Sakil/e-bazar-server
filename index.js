@@ -72,10 +72,10 @@ client.connect(err => {
   app.get('/product/:id', (req, res) => {
      const id = ObjectID(req.params.id)
      console.log('find this id', id);
-    // collection.find({_id: id})
-    // .toArray((error, documents) => {
-    //   res.send(documents);
-    // })
+    collection.find({_id: id})
+    .toArray((error, documents) => {
+      res.send(documents);
+    })
   });
 
 });
