@@ -5,8 +5,10 @@ const bodyParser = require('body-parser');
 require('dotenv').config()
 app.use(cors());
 app.use(bodyParser.json());
-const {ObjectID} = require('mongodb').ObjectId
+const {ObjectId} = require('mongodb');
 const port = process.env.PORT || 4000
+
+console.log("kemon dilam bondura",ObjectId());
 
 const MongoClient = require('mongodb').MongoClient;
 const uri =  `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.mxsrj.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
@@ -62,7 +64,7 @@ client.connect(err => {
 
   //delete product
   app.delete('/deleteProduct/:id', (req, res) => {
-    const id = ObjectID(req.params.id)
+    const id = ObjectId(req.params.id)
     console.log('delete this id', id);
     collection.findOneAndDelete({_id: id})
     .then(documents => res.send(!! documents.value))
@@ -70,7 +72,8 @@ client.connect(err => {
 
   //find product for checkout
   app.get('/product/:id', (req, res) => {
-     const id = ObjectID(req.params.id)
+    console.log(req.params.id);
+     const id = ObjectId(req.params.id)
      console.log('find this id', id);
     collection.find({_id: id})
     .toArray((error, documents) => {
@@ -82,7 +85,7 @@ client.connect(err => {
 
 
 app.get('/', (req, res) => {
-  res.send('Hello Worldddd!')
+  res.send('Hello World change!')
 })
 
 app.listen(port, () => {
