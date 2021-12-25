@@ -72,7 +72,7 @@ client.connect(err => {
   app.get('/product/:id', (req, res) => {
    
       res.send("hello");
-    })
+    
   });
 
 });
